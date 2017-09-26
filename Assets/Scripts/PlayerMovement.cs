@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour {
     float dashDuration;
     bool isDash;
 
+    //on ground check
+    public bool onGround;
+
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -35,6 +38,7 @@ public class PlayerMovement : MonoBehaviour {
         dashTime = 0f;
         dashDuration = 0.5f;
         isDash = false;
+        onGround = true;
 	}
 
     private void FixedUpdate()
