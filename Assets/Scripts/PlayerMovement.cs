@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
         playerTrans = player.transform;
         playerRig = player.GetComponent<Rigidbody>();
         speed = 20.0f;
-        jumpSpeed = 20.0f;
+        jumpSpeed = 30.0f;
         gravity = 10.0f;
         dash = 5f;
         dashTime = 0f;
@@ -61,11 +61,15 @@ public class PlayerMovement : MonoBehaviour {
 
     void PlayerJump()
     {
-        float v;
-        v = Input.GetAxisRaw("Jump");
-        vertMovement.Set(0f, v, 0f);
-        vertMovement = vertMovement.normalized * jumpSpeed * Time.deltaTime;
-        playerRig.AddForce(vertMovement,ForceMode.Impulse);
+        if (onGround == true)
+        {
+
+            float v;
+            v = Input.GetAxisRaw("Jump");
+            vertMovement.Set(0f, v, 0f);
+            vertMovement = vertMovement.normalized * jumpSpeed * Time.deltaTime;
+            playerRig.AddForce(vertMovement, ForceMode.Impulse);
+        }
     }
     void PlayerDash()
     {
@@ -93,6 +97,22 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
         
+    }
+
+    private void OnTriggerEnter(Collider ground)
+    {
+        if (ground.tag == "Ground")
+        {
+            onGround = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider ground)
+    {
+        if (ground.tag == "Ground")
+        {
+            onGround = false;
+        }
     }
     // Update is called once per frame
     void Update () {
