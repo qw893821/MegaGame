@@ -56,6 +56,14 @@ public class PlayerMovement : MonoBehaviour {
         horiMovement.Set(h, 0f, 0f);
         horiMovement = horiMovement.normalized * speed * Time.deltaTime;
         playerRig.AddForce(horiMovement,ForceMode.Impulse);
+        if (Input.GetButtonDown("L  eft"))
+        {
+            transform.rotation = Quaternion.Euler(0,180f,0);
+        }
+        if (Input.GetButtonDown("Right"))
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
         
     }
 
