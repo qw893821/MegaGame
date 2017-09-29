@@ -11,10 +11,21 @@ public enum BulletType
 public class Bullet : MonoBehaviour {
     public float bulletSpeed;
 
+    GameObject player;
+    bool faceLeft;
     public BulletType type;
 	// Use this for initialization
 	void Awake () {
         BulletTypePick();
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player.transform.eulerAngles.y == 0)
+        {
+            faceLeft = true;
+        }
+        else if (player.transform.eulerAngles.y == 180)
+        {
+            faceLeft=false;
+        }
     }
 	
 	// Update is called once per frame
@@ -22,9 +33,16 @@ public class Bullet : MonoBehaviour {
         BulletMove();
 	}
     //bullet move;
-    void BulletMove()
+    public void BulletMove()
     {
-        transform.position += transform.forward * bulletSpeed * Time.deltaTime;
+        if (faceLeft)
+        {
+            transform.position += new Vector3(bulletSpeed * Time.deltaTime, 0f, 0f);
+        }
+        else if (!faceLeft)
+        {
+            transform.position -= new Vector3(bulletSpeed * Time.deltaTime, 0f, 0f);
+        }
     }
 
     //bullet speed is based on bullet type

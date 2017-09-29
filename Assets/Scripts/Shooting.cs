@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour {
     public GameObject bullet;
-    public GameObject canon;
+    public GameObject cannon;
 	// Use this for initialization
 	void Start () {
-        canon = GameObject.Find("Canon");
+        cannon = GameObject.Find("Cannon");
 	}
 	
 	// Update is called once per frame
@@ -18,9 +18,7 @@ public class Shooting : MonoBehaviour {
     void Shoot()
     {
         Vector3 bulletPos;
-        
-        bulletPos = canon.transform.position + new Vector3(1f, 0, 0);
-
+        bulletPos = cannon.transform.position + new Vector3(0.2f, 0, 0);
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(bullet, bulletPos, Quaternion.identity);
