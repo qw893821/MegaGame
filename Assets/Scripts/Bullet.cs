@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour {
     GameObject player;
     bool faceLeft;
     public BulletType type;
+
+    EnemyHealth enemyHealth;
 	// Use this for initialization
 	void Awake () {
         BulletTypePick();
@@ -63,4 +65,11 @@ public class Bullet : MonoBehaviour {
 
     }
 
+    private void OnTriggerEnter(Collider enemy)
+    {
+        if(enemy.tag=="Enemy")
+        {
+            he
+        }
+    }
 }

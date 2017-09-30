@@ -8,11 +8,32 @@ public enum EnemyType{
     enemy4
 }
 public class EnemyHealth : MonoBehaviour {
-    public float health;
+    public float currenthealth;
+    public float maxHealth;
+    EnemyType enemyType;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        switch (enemyType)
+        {
+            case EnemyType.enemy1:
+                maxHealth = 50f;
+                break;
+            case EnemyType.enemy2:
+                maxHealth = 80f;
+                break;
+            case EnemyType.enemy3:
+                maxHealth = 100f;
+                break;
+            case EnemyType.enemy4:
+                maxHealth = 150f;
+                break;
+            default:
+                maxHealth = 10f;
+                break;
 
+        }
+        currenthealth = maxHealth;
 	}
 	
 	// Update is called once per frame
