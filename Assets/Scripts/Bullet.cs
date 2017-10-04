@@ -26,7 +26,6 @@ public class Bullet : MonoBehaviour {
         BulletTypePick();
         player = GameObject.FindGameObjectWithTag("Player");
         enemy = GameObject.FindGameObjectWithTag("Enemy");
-        enemyHealth = enemy.GetComponent<EnemyHealth>();
         if (player.transform.eulerAngles.y == 0)
         {
             faceLeft = true;
@@ -73,17 +72,5 @@ public class Bullet : MonoBehaviour {
                 break;
         }
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag=="Enemy")
-        {
-            enemyHealth.currenthealth -= bulletPower;
-        }
-        if (other.tag == "Ground")
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

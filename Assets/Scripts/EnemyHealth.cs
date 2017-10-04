@@ -14,12 +14,17 @@ public class EnemyHealth : MonoBehaviour {
     public float currenthealth;
     public float maxHealth;
 
-    EnemyType enemyType;
+    public EnemyType enemyType;
+
+    //instance of the bullet
+
 
 	// Use this for initialization
 	void Awake () {
         HealthValuePick();
         currenthealth = maxHealth;
+
+
 	}
 	
 	// Update is called once per frame
@@ -60,6 +65,16 @@ public class EnemyHealth : MonoBehaviour {
         if (currenthealth <= 0)
         {
             Destroy(this.gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Bullet bullet;//get the bullet script of the bullet;
+        if (other.tag == "Bullets")
+        {
+            bullet=other.GetComponentInParent<Bullet>();
+            currenthealth -= bullet.bulletPower;
         }
     }
 }
