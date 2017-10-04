@@ -9,17 +9,24 @@ public enum BulletType
     large
 }
 public class Bullet : MonoBehaviour {
-    public float bulletSpeed;
+    
 
     GameObject player;
+    GameObject enemy;
     bool faceLeft;
+    //different bullet have different flying speed and power, charge could change bullet type.
+    //Three stage charge
     public BulletType type;
+    public float bulletSpeed;
+    public float bulletPower;
 
     EnemyHealth enemyHealth;
 	// Use this for initialization
 	void Awake () {
         BulletTypePick();
         player = GameObject.FindGameObjectWithTag("Player");
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemyHealth = enemy.GetComponent<EnemyHealth>();
         if (player.transform.eulerAngles.y == 0)
         {
             faceLeft = true;
@@ -54,22 +61,29 @@ public class Bullet : MonoBehaviour {
         {
             case BulletType.mid:
                 bulletSpeed = 20f;
+                bulletPower = 50f;
                 break;
             case BulletType.large:
                 bulletSpeed = 25f;
+                bulletPower = 80f;
                 break;
             default:
                 bulletSpeed = 10f;
+                bulletPower = 20f;
                 break;
         }
 
     }
 
-    private void OnTriggerEnter(Collider enemy)
+    private void OnTriggerEnter(Collider other)
     {
-        if(enemy.tag=="Enemy")
+        if(other.tag=="Enemy")
         {
-            he
+            enemyHealth.currenthealth -= bulletPower;
+        }
+        if (other.tag == "Ground")
+        {
+            Destroy(this.gameObject);
         }
     }
 }
