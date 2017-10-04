@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         playerTrans = player.transform;
         playerRig = player.GetComponent<Rigidbody>();
-        speed = 20.0f;
+        speed = 8.0f;
         jumpSpeed = 30.0f;
         gravity = 10.0f;
         dash = 5f;
@@ -55,12 +55,12 @@ public class PlayerMovement : MonoBehaviour {
         h = Input.GetAxisRaw("Horizontal");
         horiMovement.Set(h, 0f, 0f);
         horiMovement = horiMovement.normalized * speed * Time.deltaTime;
-        playerRig.AddForce(horiMovement,ForceMode.Impulse);
-        if (Input.GetButtonDown("Left"))
+        playerRig.MovePosition(transform.position+horiMovement);
+        if (h<0)
         {
             transform.rotation = Quaternion.Euler(0,180f,0);
         }
-        if (Input.GetButtonDown("Right"))
+        if (h>0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
