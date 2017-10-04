@@ -51,19 +51,35 @@ public class PlayerMovement : MonoBehaviour {
 
     void HorizontalMove()
     {
+        bool turning;
+        turning = false;
+        Vector3 prePos;
         float h;
         h = Input.GetAxisRaw("Horizontal");
         horiMovement.Set(h, 0f, 0f);
         horiMovement = horiMovement.normalized * speed * Time.deltaTime;
         playerRig.MovePosition(transform.position+horiMovement);
-        if (h<0)
+        prePos = transform.position;
+        if (h<0&&transform.rotation.y==0)
         {
+            
             transform.rotation = Quaternion.Euler(0,180f,0);
+            //transform.position += new Vector3(1f, 0, 0);
+            turning = true;
         }
-        if (h>0)
+        else if (h>0 && transform.rotation.y != 0)
         {
+            
             transform.rotation = Quaternion.Euler(0, 0, 0);
+            //transform.position += new Vector3(-1f, 0, 0);
+            turning = true;
         }
+        if (turning)
+        {
+            transform.position = prePos;
+
+        }
+        
         
     }
 
@@ -78,6 +94,8 @@ public class PlayerMovement : MonoBehaviour {
             vertMovement = vertMovement.normalized * jumpSpeed * Time.deltaTime;
             playerRig.AddForce(vertMovement, ForceMode.Impulse);
         }
+
+
     }
     void PlayerDash()
     {
@@ -90,13 +108,22 @@ public class PlayerMovement : MonoBehaviour {
             
             
             dashTime += Time.deltaTime;
-            if (isDash&&dashTime<dashDuration)
+            if (isDash && dashTime < dashDuration)
             {
                 Vector3 dashDir;
-                dashDir = new Vector3(playerRig.transform.position.x, 0f, 0f);
+                dashDir = new Vector3(1f, 0f, 0f);
                 dashDir = dashDir.normalized;
-                playerRig.MovePosition(playerRig.transform.position+dashDir*dash*Time.deltaTime);
-                print(dashDir);
+                if (transform.rotation.y == 0)
+                {
+                    print("right");
+                    playerRig.MovePosition(playerRig.transform.position + dashDir * dash * Time.deltaTime);
+                
+                }
+                else if (transform.rotation.y == 180f)
+                {
+                    print("left");
+                    playerRig.MovePosition(playerRig.transform.position - dashDir * dash * Time.deltaTime);
+                }
             }
             else if (dashTime > dashDuration)
             {

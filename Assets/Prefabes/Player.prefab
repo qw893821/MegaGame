@@ -21,9 +21,8 @@ GameObject:
   - component: {fileID: 4653904995650182}
   - component: {fileID: 33954504635715494}
   - component: {fileID: 23097160746772584}
-  - component: {fileID: 114261635782990766}
   m_Layer: 0
-  m_Name: Player
+  m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,8 +211,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.89, y: 1, z: 1}
-  m_Center: {x: -0.58, y: 0, z: 0}
+  m_Size: {x: 1.15, y: 1, z: 1}
+  m_Center: {x: -0.52, y: 0, z: 0}
 --- !u!65 &65543342566661596
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -249,29 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d75c4b092de184cbe8a6af288defc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1574107379447338, guid: cda7ad4eca768934ea9677492af2dce0, type: 2}
+  bullets: []
   cannon: {fileID: 1665193500147434}
---- !u!114 &114261635782990766
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1118361178054994}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed42aa6883fdd8e42b7cbb0aaa297687, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  gravity: 0
-  jumpSpeed: 0
-  player: {fileID: 0}
-  playerRig: {fileID: 0}
-  playerTrans: {fileID: 0}
-  horiMovement: {x: 0, y: 0, z: 0}
-  vertMovement: {x: 0, y: 0, z: 0}
-  dash: 0
-  onGround: 0
 --- !u!114 &114427247480778186
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -304,5 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d75c4b092de184cbe8a6af288defc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1574107379447338, guid: cda7ad4eca768934ea9677492af2dce0, type: 2}
+  bullets:
+  - {fileID: 1574107379447338, guid: cda7ad4eca768934ea9677492af2dce0, type: 2}
+  - {fileID: 1859052060728984, guid: 6f1aaf72e67a2f443986de365c88b5a7, type: 2}
+  - {fileID: 1657698436415908, guid: 79d893363d4b7a943b3ef5ede78a63cd, type: 2}
   cannon: {fileID: 0}
