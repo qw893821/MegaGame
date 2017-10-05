@@ -23,7 +23,7 @@ public class Shooting : MonoBehaviour {
         chargeTimer = 0f;
         normalTimer = 0.5f;
         level1Timer = 1f;
-        level1Timer = 2f;
+        level2Timer = 2f;
 
 
 	}
@@ -44,6 +44,7 @@ public class Shooting : MonoBehaviour {
             {
                 chargeTimer += Time.deltaTime;
                 print(chargeTimer);
+            }
                 if (Input.GetButtonUp("Fire1"))
                 {
                     if (chargeTimer <= level1Timer)
@@ -61,8 +62,6 @@ public class Shooting : MonoBehaviour {
                     chargeTimer = 0f;
                     timer = 0;
                 }
-                
-            }
         }
 
     }
