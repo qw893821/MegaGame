@@ -7,7 +7,8 @@ public enum EnemyType
     enemy1,
     enemy2,
     enemy3,
-    enemy4
+    enemy4,
+    boss
 }
 
 public class EnemyHealth : MonoBehaviour {
@@ -52,6 +53,9 @@ public class EnemyHealth : MonoBehaviour {
                 break;
             case EnemyType.enemy4:
                 maxHealth = 150f;
+                break;
+            case EnemyType.boss:
+                maxHealth = 1000f;
                 break;
             default:
                 maxHealth = 20f;

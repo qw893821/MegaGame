@@ -43,7 +43,6 @@ public class Shooting : MonoBehaviour {
             if (Input.GetButton("Fire1"))
             {
                 chargeTimer += Time.deltaTime;
-                print(chargeTimer);
             }
                 if (Input.GetButtonUp("Fire1"))
                 {
@@ -65,4 +64,6 @@ public class Shooting : MonoBehaviour {
         }
 
     }
+
+
 }
