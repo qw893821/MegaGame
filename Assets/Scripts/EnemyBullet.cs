@@ -51,6 +51,6 @@ public class EnemyBullet : MonoBehaviour {
         bulletM.transform.position += dir.normalized* speed * Time.deltaTime;
         bulletL.transform.position += dirL.normalized * speed * Time.deltaTime;
         bulletR.transform.position += dirR.normalized * speed * Time.deltaTime;
-        print(speed * Time.deltaTime);
+
     }
 }
