@@ -35,7 +35,7 @@ public class Boss1AI : MonoBehaviour {
         shootTimer = 0f;
         laserTimer = 0f;
         modeChangeTimer = 0f;
-        changeTime = 10f;
+        changeTime = 20f;
 
         colButtle = new Color(0f, 255f, 0);//eye color is green when shoot buttle
         colLaser = new Color(255f, 0, 0f);//eye color is red when shoot laser
