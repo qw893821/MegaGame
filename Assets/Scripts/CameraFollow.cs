@@ -7,13 +7,15 @@ public class CameraFollow : MonoBehaviour {
     GameObject player;
 
 	// Use this for initialization
-	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
-        camOffset = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
-	}
-	
-	// Update is called once per frame
-	void LateUpdate () {
-        transform.position = player.transform.position + camOffset;
+	void Awake () {
+        player = GameObject.Find("Player");
+        camOffset = transform.position - player.transform.position;
+    }
+
+
+    // Update is called once per frame
+    void LateUpdate () {
+
+        transform.position = player.transform.position+new Vector3(0,3f,-10f);
 	}
 }
