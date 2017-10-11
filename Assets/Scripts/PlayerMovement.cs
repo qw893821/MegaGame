@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour {
     //on ground check
     public bool onGround;
 
+    public GameObject boss;
+    Transform bossPos;
+    GameObject boss1;
+
     // Use this for initialization
     void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -39,6 +43,8 @@ public class PlayerMovement : MonoBehaviour {
         dashDuration = 0.5f;
         isDash = false;
         onGround = true;
+        bossPos = GameObject.Find("BossPos").transform;
+        boss1 = null;
 	}
 
     private void FixedUpdate()
@@ -134,11 +140,17 @@ public class PlayerMovement : MonoBehaviour {
         
     }
 
-    private void OnTriggerEnter(Collider ground)
+    private void OnTriggerEnter(Collider col)
     {
-        if (ground.tag == "Ground")
+        if (col.tag == "Ground")
         {
             onGround = true;
+        }
+        if(col.tag=="BossRoom")
+        {
+            
+            Instantiate(boss,bossPos);
+            Destroy(col.gameObject);
         }
     }
 

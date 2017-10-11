@@ -19,10 +19,14 @@ public class EnemyBullet : MonoBehaviour {
     GameObject bulletM;
     GameObject bulletL;
     GameObject bulletR;
-    
 
-	// Use this for initialization
-	void Awake () {
+    //destroy bullet based on time
+    float destroyTimer;
+    float destroyTime;
+
+
+    // Use this for initialization
+    void Awake () {
         player = GameObject.FindGameObjectWithTag("Player");
         playerPos = player.transform.position;
         eye = GameObject.Find("BulletPos");
@@ -33,14 +37,17 @@ public class EnemyBullet : MonoBehaviour {
         bulletM = transform.Find("BulletM").gameObject;
         bulletL = transform.Find("BulletL").gameObject;
         bulletR = transform.Find("BulletR").gameObject;
-
+        destroyTimer = 0f;
+        destroyTime = 5f;
 
     }
 	
 	// Update is called once per frame
 	void Update () {
         BulletMove();
-	}
+        RemoveBullet();
+
+    }
 
     void BulletMove()
     {
@@ -52,5 +59,14 @@ public class EnemyBullet : MonoBehaviour {
         bulletL.transform.position += dirL.normalized * speed * Time.deltaTime;
         bulletR.transform.position += dirR.normalized * speed * Time.deltaTime;
 
+    }
+
+    void RemoveBullet()
+    {
+        destroyTimer += Time.deltaTime;
+        if (destroyTimer >= destroyTime)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

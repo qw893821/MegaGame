@@ -17,9 +17,9 @@ public class LaserMovement : MonoBehaviour {
         lineRend = GetComponent<LineRenderer>();
         player = GameObject.FindGameObjectWithTag("Player");
         dir = player.transform.position - transform.position;
-        dir = dir.normalized;
+        dir = dir.normalized*2;
         lineRend.SetPosition(1, dir);
-        speed = 5f;
+        speed = 8f;
 	}
 	
 	// Update is called once per frame

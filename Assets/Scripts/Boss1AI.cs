@@ -24,9 +24,6 @@ public class Boss1AI : MonoBehaviour {
     public GameObject bullet;
     public GameObject laser;
 
-    //laser ready lunch check
-    bool modeChange;
-
     //color of boss eye material
     Color eyeCol;
 
@@ -38,8 +35,8 @@ public class Boss1AI : MonoBehaviour {
         shootTimer = 0f;
         laserTimer = 0f;
         modeChangeTimer = 0f;
+        laserChargeTime = 2f;
         changeTime = 20f;
-        modeChange = false;
         colButtle = new Color(0f, 255f, 0);//eye color is green when shoot buttle
         colLaser = new Color(255f, 0, 0f);//eye color is red when shoot laser
 
@@ -49,7 +46,6 @@ public class Boss1AI : MonoBehaviour {
 	void Update () {
         Shoot();
         ModeChange();
-
     }
 
     void Shoot()
@@ -65,25 +61,30 @@ public class Boss1AI : MonoBehaviour {
         }
         else if (laserMode)
         {
-
+            laserTimer += Time.deltaTime;
+            if (laserTimer >= laserChargeTime)
+            {
+                Instantiate(laser, bossEye.transform);
+                laserMode = false;
+                laserTimer = 0f;
+                bossEye.GetComponent<Renderer>().material.color = colButtle;
+            }
         }
     }
 
     void ModeChange()
     {
         //eye color change pace
-        modeChangeTimer += Time.deltaTime;
-        if (modeChangeTimer >= changeTime)
+        if (!laserMode)
         {
-            bossEye.GetComponent<Renderer>().material.color = colLaser;
-            laserMode = true;
-            modeChange = true;
-
+            modeChangeTimer += Time.deltaTime;
+            if (modeChangeTimer >= changeTime)
+            {
+                bossEye.GetComponent<Renderer>().material.color = colLaser;
+                laserMode = true;
+                modeChangeTimer = 0f;
+            }
         }
         print(laserMode);
-    }
-    
-    void 
-
-    
+    }  
 }

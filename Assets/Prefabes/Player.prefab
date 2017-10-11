@@ -223,8 +223,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: -0.62, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: -0.62, y: -0.37, z: 0}
 --- !u!65 &65788440954501152
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -271,6 +271,7 @@ MonoBehaviour:
   vertMovement: {x: 0, y: 0, z: 0}
   dash: 5
   onGround: 1
+  boss: {fileID: 1710002470867672, guid: ea43a218eb09db4429166674658806f6, type: 2}
 --- !u!114 &114463601301495048
 MonoBehaviour:
   m_ObjectHideFlags: 1
