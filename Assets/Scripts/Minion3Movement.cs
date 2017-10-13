@@ -12,28 +12,28 @@ public class Minion3Movement : MonoBehaviour {
     float reShootTime;
     float reShootTimer;
 
-    
+    //pos to spawn bullet
+    Vector3 eyePos;
 	// Use this for initialization
 	void Awake () {
         speed = 5f;
         reShootTime = 2f;
         reShootTimer = 0f;
-        
-		
+        eyePos = transform.Find("BulletPos").gameObject.transform.position;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         Shoot();
 
     }
-
     void Shoot()
     {
         reShootTimer += Time.deltaTime;
         if (reShootTimer >= reShootTime)
         {
-            Instantiate(bullet, transform);
+            Instantiate(bullet,eyePos,Quaternion.identity);
             reShootTimer = 0f;
         }
     }

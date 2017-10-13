@@ -11,7 +11,9 @@ public class EnemyBullet : MonoBehaviour {
     float speed;
     Vector3 dir;//bullet move direction
 
-    //get boss eye posititon
+    /*get boss eye posititon,
+     * as this bullet also works for the minion, the eye may need some change
+     */
     GameObject eye;
     public Vector3 eyePos;
 
@@ -69,4 +71,6 @@ public class EnemyBullet : MonoBehaviour {
             Destroy(this.gameObject);
         }
     }
+
+    
 }
