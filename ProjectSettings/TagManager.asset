@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Border
   - BossRoom
+  - Reverse
   layers:
   - Default
   - TransparentFX
